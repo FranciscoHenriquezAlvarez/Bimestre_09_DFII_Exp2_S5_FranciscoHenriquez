@@ -1,0 +1,132 @@
+/* ========================================
+   MUNDOVIAJES - ESTILOS GENERALES
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   VARIABLES - MODO CLARO
+======================================== */
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  color-scheme: light;
+
+  --color-fondo: #f1f5f9;
+  --color-superficie: #ffffff;
+
+  --color-texto: #1e293b;
+  --color-texto-secundario: #475569;
+
+  --color-primario: #075985;
+  --color-primario-hover: #0369a1;
+
+  --color-header: #075985;
+  --color-footer: #082f49;
+
+  --color-enlace: #0284c7;
+  --color-enlace-hover: #0369a1;
+
+  --color-borde: #e2e8f0;
+
+  --color-carga: #e0f2fe;
+  --color-error-fondo: #fee2e2;
+  --color-error-texto: #991b1b;
+
+  --color-sombra: rgba(15, 23, 42, 0.12);
+}
+
+/* ========================================
+   VARIABLES - MODO OSCURO
+======================================== */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-fondo: #0f172a;
+  --color-superficie: #1e293b;
+
+  --color-texto: #f1f5f9;
+  --color-texto-secundario: #cbd5e1;
+
+  --color-primario: #38bdf8;
+  --color-primario-hover: #7dd3fc;
+
+  --color-header: #020617;
+  --color-footer: #020617;
+
+  --color-enlace: #0284c7;
+  --color-enlace-hover: #0369a1;
+
+  --color-borde: #334155;
+
+  --color-carga: #164e63;
+  --color-error-fondo: #450a0a;
+  --color-error-texto: #fecaca;
+
+  --color-sombra: rgba(0, 0, 0, 0.35);
+}
+
+/* ========================================
+   ELEMENTOS GENERALES
+======================================== */
+
+html {
+  min-height: 100%;
+  background-color: var(--color-fondo);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 4px;
+}
+
+/* Respetar preferencias de movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
