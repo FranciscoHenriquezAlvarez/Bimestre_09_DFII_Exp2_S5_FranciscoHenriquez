@@ -1,8 +1,18 @@
 # ✈️ MundoViajes — Agencia de Viajes
 
-Aplicación web desarrollada con **React y Vite** que permite explorar destinos turísticos y consultar información de vuelos y hoteles mediante una interfaz intuitiva y adaptable a diferentes dispositivos.
+Aplicación web desarrollada con **React y Vite** que permite explorar destinos turísticos y consultar información de vuelos y hoteles mediante una interfaz intuitiva, moderna y adaptable a diferentes dispositivos.
 
 El proyecto integra una **API REST simulada mediante Mock Service Worker (MSW)** para consultar destinos turísticos y un **servicio GraphQL simulado**, utilizando **Apollo Client**, para obtener información detallada de vuelos y hoteles.
+
+## 🌐 Aplicación publicada
+
+**MundoViajes está disponible en GitHub Pages:**
+
+https://franciscohenriquezalvarez.github.io/Bimestre_09_DFII_Exp2_S5_FranciscoHenriquez/
+
+**Repositorio GitHub:**
+
+https://github.com/FranciscoHenriquezAlvarez/Bimestre_09_DFII_Exp2_S5_FranciscoHenriquez
 
 ## Características principales
 
@@ -18,8 +28,10 @@ El proyecto integra una **API REST simulada mediante Mock Service Worker (MSW)**
 - Manejo de errores y posibilidad de reintentar consultas.
 - Optimización de solicitudes REST mediante caché en memoria.
 - Cancelación de solicitudes mediante AbortController.
+- Cambio entre modo claro y oscuro, conservando la preferencia del usuario.
 - Diseño adaptable a dispositivos móviles, tabletas y computadores.
 - Pruebas automatizadas de servicios, consultas GraphQL y componentes React.
+- Publicación en GitHub Pages mediante `gh-pages`.
 
 ## Tecnologías utilizadas
 
@@ -35,6 +47,7 @@ El proyecto integra una **API REST simulada mediante Mock Service Worker (MSW)**
 - **Vitest:** ejecución de pruebas automatizadas.
 - **React Testing Library:** pruebas de componentes e interacciones.
 - **ESLint:** análisis estático y verificación del código.
+- **gh-pages:** publicación de la aplicación en GitHub Pages.
 
 ## Requisitos previos
 
@@ -42,13 +55,14 @@ Para ejecutar el proyecto es necesario contar con:
 
 - Node.js compatible con Vite 8.
 - npm.
+- Un navegador web moderno.
 
 ## Instalación y ejecución
 
 **1. Clonar el repositorio**
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/FranciscoHenriquezAlvarez/Bimestre_09_DFII_Exp2_S5_FranciscoHenriquez.git
 ```
 
 **2. Acceder al directorio del proyecto**
@@ -73,9 +87,46 @@ La aplicación estará disponible en la dirección local indicada por Vite.
 
 El proyecto incluye el archivo `public/mockServiceWorker.js`, necesario para el funcionamiento de Mock Service Worker.
 
+### Vista previa de producción
+
+Para generar los archivos de producción:
+
+```bash
+npm run build
+```
+
+Para ejecutar una vista previa:
+
+```bash
+npm run preview
+```
+
+Se debe abrir la dirección completa indicada por Vite, incluyendo la ruta base del repositorio.
+
+### Publicación en GitHub Pages
+
+Para publicar la aplicación:
+
+```bash
+npm run deploy
+```
+
+Este comando ejecuta automáticamente:
+
+1. `predeploy`, que genera los archivos de producción mediante `npm run build`.
+2. `deploy`, que publica la carpeta `dist` utilizando `gh-pages`.
+
+La publicación utiliza la rama `gh-pages` y la carpeta raíz `/(root)`.
+
 ## Estructura del proyecto
 
 ```text
+public/
+├── 404.html
+├── favicon.svg
+├── icons.svg
+└── mockServiceWorker.js
+
 src/
 ├── components/
 │   └── DestinoCard.jsx
@@ -93,6 +144,7 @@ src/
 ├── services/
 │   └── destinosService.js
 ├── test/
+│   ├── setup.js
 │   ├── destinosService.test.js
 │   ├── Destinos.test.jsx
 │   ├── graphqlQueries.test.js
@@ -100,19 +152,26 @@ src/
 ├── App.jsx
 ├── index.css
 └── main.jsx
+
+index.html
+package.json
+vite.config.js
+README.md
 ```
 
 ### Organización
 
+- **public:** archivos estáticos, iconos y recursos para GitHub Pages y MSW.
 - **components:** componentes reutilizables de la interfaz.
 - **graphql:** configuración de Apollo Client y consultas GraphQL.
 - **mocks:** configuración y controladores de los servicios simulados.
 - **pages:** componentes correspondientes a las distintas páginas.
 - **services:** funciones de comunicación con la API REST.
-- **test:** pruebas automatizadas de servicios, consultas y componentes.
+- **test:** configuración y pruebas automatizadas de servicios, consultas y componentes.
 - **App.jsx:** configuración general de la aplicación y sus rutas.
 - **index.css:** estilos globales.
 - **main.jsx:** punto de entrada de React.
+- **vite.config.js:** configuración de Vite, Vitest y la ruta base de publicación.
 
 ## API REST simulada
 
@@ -134,9 +193,11 @@ Cada destino incluye:
 - Descripción.
 - Actividades turísticas.
 
-Los destinos disponibles son París, Roma, Tokio y Cancún.
+Los destinos disponibles son **París, Roma, Tokio y Cancún**.
 
 La información se obtiene dinámicamente mediante la API REST simulada.
+
+En GitHub Pages, el endpoint utiliza la ruta base del repositorio para mantener la compatibilidad con el alojamiento.
 
 ## Servicio GraphQL simulado
 
@@ -199,7 +260,7 @@ La comunicación con los servicios REST y GraphQL contempla diferentes situacion
 - **Sin resultados:** se informa cuando no existen datos disponibles.
 - **Destino inexistente:** se presenta un mensaje cuando el destino solicitado no existe.
 
-Además, el servicio REST utiliza una caché en memoria para reutilizar información previamente consultada y AbortController para gestionar la cancelación de solicitudes.
+Además, el servicio REST utiliza una caché en memoria para reutilizar información previamente consultada y `AbortController` para gestionar la cancelación de solicitudes.
 
 Apollo Client administra las consultas GraphQL y su caché de resultados.
 
@@ -207,85 +268,4 @@ Apollo Client administra las consultas GraphQL y su caché de resultados.
 
 La aplicación dispone de las siguientes secciones:
 
-- **Inicio:** presentación de MundoViajes y acceso a los destinos turísticos.
-- **Destinos:** exploración de destinos internacionales y sus actividades.
-- **Detalle del destino:** visualización de vuelos y hoteles relacionados con el destino seleccionado.
-- **Página no encontrada:** mensaje para rutas inexistentes.
-
-### Rutas disponibles
-
-| Ruta | Descripción |
-| --- | --- |
-| `/` | Página de inicio. |
-| `/destinos` | Listado de destinos turísticos. |
-| `/destinos/:id` | Vuelos y hoteles del destino seleccionado. |
-| Otras rutas | Página no encontrada. |
-
-La navegación se realiza mediante React Router, sin necesidad de recargar completamente la aplicación.
-
-## Pruebas y verificaciones
-
-El proyecto dispone de comandos para comprobar su funcionamiento y calidad de código.
-
-**Análisis estático:**
-
-```bash
-npm run lint
-```
-
-**Ejecución de pruebas:**
-
-```bash
-npm run test
-```
-
-**Compilación de producción:**
-
-```bash
-npm run build
-```
-
-### Pruebas automatizadas
-
-Se implementaron pruebas utilizando Vitest y React Testing Library.
-
-| Archivo | Pruebas |
-| --- | ---: |
-| `destinosService.test.js` | 8 |
-| `Destinos.test.jsx` | 5 |
-| `graphqlQueries.test.js` | 5 |
-| `DetalleDestino.test.jsx` | 7 |
-| **Total** | **25** |
-
-Las pruebas comprueban:
-
-- Obtención de información mediante REST.
-- Manejo de errores y respuestas del servicio.
-- Visualización de destinos turísticos.
-- Estructura de las consultas GraphQL.
-- Utilización del identificador del destino.
-- Presentación de vuelos y hoteles.
-- Visualización de fechas y disponibilidad.
-- Manejo de errores y ausencia de resultados.
-
-Las **25 pruebas automatizadas fueron ejecutadas satisfactoriamente**.
-
-### Comprobación de respuestas y navegación
-
-Para verificar el funcionamiento de la aplicación, es posible:
-
-- Acceder a `/destinos` para consultar los destinos disponibles.
-- Seleccionar un destino para visualizar sus vuelos y hoteles.
-- Acceder a `/destinos/no-existe` para comprobar el tratamiento de destinos inexistentes.
-- Revisar las solicitudes REST y GraphQL desde las herramientas de desarrollo del navegador.
-- Comprobar la navegación entre las distintas páginas.
-
-## Diseño adaptable
-
-La interfaz está diseñada para ajustarse a diferentes resoluciones de pantalla, facilitando la navegación y consulta de información desde computadores, tabletas y dispositivos móviles.
-
-Se verificó el funcionamiento de la aplicación en distintos tamaños de pantalla, comprobando la distribución de las tarjetas, la legibilidad de los contenidos y la navegación.
-
----
-
-**MundoViajes | Desarrollo Frontend II**
+- **Inicio:** presentación de MundoViajes y acceso a los destinos turísticos

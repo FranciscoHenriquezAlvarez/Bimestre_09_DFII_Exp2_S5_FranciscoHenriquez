@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirigiendo | MundoViajes</title>
+    <script>
+      (function () {
+        const base = '/Bimestre_09_DFII_Exp2_S5_FranciscoHenriquez/';
+        const rutaActual = window.location.pathname;
+
+        if (!rutaActual.startsWith(base)) {
+          return;
+        }
+
+        const rutaInterna = rutaActual.slice(base.length);
+        const rutaCompleta =
+          '/' + rutaInterna + window.location.search + window.location.hash;
+
+        sessionStorage.setItem(
+          'mundoviajes-ruta-pendiente',
+          rutaCompleta
+        );
+
+        window.location.replace(base);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo a MundoViajes...</p>
+  </body>
+</html>

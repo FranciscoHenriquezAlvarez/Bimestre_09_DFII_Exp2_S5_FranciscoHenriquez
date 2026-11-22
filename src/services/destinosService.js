@@ -1,4 +1,5 @@
-const API_URL = '/api/destinos';
+// URL de la API REST compatible con desarrollo y GitHub Pages.
+const API_URL = `${import.meta.env.BASE_URL}api/destinos`;
 
 // Caché en memoria para reutilizar respuestas correctas.
 const cache = new Map();

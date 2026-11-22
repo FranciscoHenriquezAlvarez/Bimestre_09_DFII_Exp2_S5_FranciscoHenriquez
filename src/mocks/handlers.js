@@ -1,5 +1,12 @@
 import { http, HttpResponse, graphql } from 'msw';
 
+// Rutas compatibles con desarrollo local y GitHub Pages.
+const API_DESTINOS_URL = `${import.meta.env.BASE_URL}api/destinos`;
+const GRAPHQL_URL = `${import.meta.env.BASE_URL}graphql`;
+
+// Asociar las consultas GraphQL al endpoint de MundoViajes.
+const graphqlMundoViajes = graphql.link(GRAPHQL_URL);
+
 // ========================================
 // DATOS SIMULADOS DE DESTINOS TURÍSTICOS
 // ========================================
@@ -262,7 +269,7 @@ export const handlers = [
   // REST: Obtener todos los destinos
   // ----------------------------------------
 
-  http.get('/api/destinos', () => {
+  http.get(API_DESTINOS_URL, () => {
     return HttpResponse.json(destinos);
   }),
 
@@ -270,7 +277,7 @@ export const handlers = [
   // GRAPHQL: Obtener vuelos por destino
   // ----------------------------------------
 
-  graphql.query('ObtenerVuelos', ({ variables }) => {
+  graphqlMundoViajes.query('ObtenerVuelos', ({ variables }) => {
     const { destinoId } = variables;
 
     const vuelosFiltrados = vuelos
@@ -298,7 +305,7 @@ export const handlers = [
   // GRAPHQL: Obtener hoteles por destino
   // ----------------------------------------
 
-  graphql.query('ObtenerHoteles', ({ variables }) => {
+  graphqlMundoViajes.query('ObtenerHoteles', ({ variables }) => {
     const { destinoId } = variables;
 
     const hotelesFiltrados = hoteles

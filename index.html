@@ -1,11 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="%BASE_URL%favicon.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>agenciaviajes-semana05</title>
+    <meta
+      name="description"
+      content="MundoViajes: explora destinos turísticos y consulta vuelos y hoteles disponibles."
+    />
+    <title>MundoViajes | Agencia de Viajes</title>
+
+    <!-- Recuperar las rutas directas al acceder desde GitHub Pages. -->
+    <script>
+      (function () {
+        const clave = 'mundoviajes-ruta-pendiente';
+        const rutaPendiente = sessionStorage.getItem(clave);
+
+        if (!rutaPendiente) {
+          return;
+        }
+
+        sessionStorage.removeItem(clave);
+
+        const base = '/Bimestre_09_DFII_Exp2_S5_FranciscoHenriquez/';
+
+        const rutaRestaurada =
+          base + rutaPendiente.replace(/^\/+/, '');
+
+        window.history.replaceState(
+          null,
+          '',
+          rutaRestaurada
+        );
+      })();
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
